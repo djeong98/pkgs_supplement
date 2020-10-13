@@ -3,7 +3,7 @@ Supplementary material containing the coefficients of NLO galaxy power spectrum.
 Reference:
 
 Vincent Desjacques, Donghui Jeong, and Fabian Schmidt <br>
-The Galaxy Power Spectrum and Bispectrum in Redshift Space 
+The Galaxy Power Spectrum and Bispectrum in Redshift Space <br>
 2018, JCAP 12 035 [arXiv:1806.04015]
 
 # pkgs_supplement_cross
