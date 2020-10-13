@@ -1,0 +1,3335 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[    120522,       3327]
+NotebookOptionsPosition[    119973,       3311]
+NotebookOutlinePosition[    120367,       3327]
+CellTagsIndexPosition[    120324,       3324]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[{Cell[TextData[{
+  StyleBox["NLO Coefficients of ",
+   FontFamily->Automatic,
+   FontWeight->"Medium",
+   PrivateFontOptions->{"FontPostScriptName"->"IBMPlexSerif-Text"},
+   FontColor->RGBColor[0.3408560311284047, 0., 0.023514152742809186`]],
+  Cell[BoxData[
+   FormBox[
+    RowBox[{
+     SubscriptBox["P", 
+      RowBox[{"gm", ",", "s"}]], "(", "k", ")"}], TraditionalForm]],
+   FontFamily->Automatic,
+   FontWeight->"Medium",
+   PrivateFontOptions->{"FontPostScriptName"->"IBMPlexSerif-Text"},
+   FontColor->RGBColor[0.3408560311284047, 0., 0.023514152742809186`],
+   ExpressionUUID->"0c7f57e8-a233-4652-bc32-91ca19f8eedb"],
+  StyleBox[" ",
+   FontFamily->Automatic,
+   FontWeight->"Medium",
+   PrivateFontOptions->{"FontPostScriptName"->"IBMPlexSerif-Text"},
+   FontColor->RGBColor[0.3408560311284047, 0., 0.023514152742809186`]]
+ }], "Title",
+  CellChangeTimes->{{3.7376858476998777`*^9, 3.737685856398926*^9}, {
+   3.737690332303603*^9, 3.7376903496668673`*^9}, {3.73770819937993*^9, 
+   3.7377082036675863`*^9}},
+  TextAlignment->Center,ExpressionUUID->
+  "9fddc9ec-5bf3-48bf-bad2-741fb9d26e7c"], "\[IndentingNewLine]", 
+ RowBox[{Cell["\<\
+Based on V. Desjacques, D. Jeong, F. Schmidt, arXiv:1806.04015 
+(see A. Boyle & F. Schmidt, arXiv:2010:... for specific details of below \
+coefficients)\
+\>", "Section",
+   CellChangeTimes->{{3.7377082196283827`*^9, 3.737708243306541*^9}},
+   ExpressionUUID->"4d446709-219e-4147-8068-b07ddfa782ce"], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"xbias2", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     SubscriptBox["b", "1"], ",", 
+     SubscriptBox["b", "\[Eta]"], ",", 
+     SubscriptBox["b", "2"], ",", 
+     SubscriptBox["b", 
+      SuperscriptBox["K", "2"]], ",", 
+     SubscriptBox["b", 
+      SubscriptBox[
+       RowBox[{"(", 
+        SuperscriptBox["\[CapitalPi]", "2"], ")"}], "p"]], ",", 
+     SubscriptBox["b", 
+      SubscriptBox[
+       RowBox[{"(", 
+        SuperscriptBox["K", "2"], ")"}], "p"]], ",", 
+     SubscriptBox["b", "\[Delta]\[Eta]"], ",", 
+     SubscriptBox["b", 
+      SuperscriptBox["\[Eta]", "2"]]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"xbias3", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     SubscriptBox["b", "1"], ",", 
+     SubscriptBox["b", "\[Eta]"], ",", 
+     SubscriptBox["b", "2"], ",", 
+     SubscriptBox["b", 
+      SuperscriptBox["K", "2"]], ",", 
+     SubscriptBox["b", 
+      SubscriptBox[
+       RowBox[{"(", 
+        SuperscriptBox["\[CapitalPi]", "2"], ")"}], "p"]], ",", 
+     SubscriptBox["b", 
+      SubscriptBox[
+       RowBox[{"(", 
+        SuperscriptBox["K", "2"], ")"}], "p"]], ",", 
+     SubscriptBox["b", "\[Delta]\[Eta]"], ",", 
+     SubscriptBox["b", 
+      SuperscriptBox["\[Eta]", "2"]], ",", 
+     SubscriptBox["b", "td"], ",", 
+     SubscriptBox["b", 
+      SubscriptBox[
+       RowBox[{"(", 
+        SuperscriptBox["\[Delta]\[CapitalPi]", "2"], ")"}], "p"]], ",", 
+     SubscriptBox["b", 
+      SubscriptBox[
+       RowBox[{"(", 
+        RowBox[{"K", " ", 
+         SuperscriptBox["\[CapitalPi]", "2"]}], ")"}], "p"]], ",", 
+     SubscriptBox["b", 
+      SubscriptBox[
+       RowBox[{"(", 
+        SuperscriptBox["\[Eta]\[CapitalPi]", "2"], ")"}], "p"]], ",", 
+     SubscriptBox["b", 
+      SubscriptBox[
+       RowBox[{"(", 
+        SuperscriptBox["\[CapitalPi]", "3"], ")"}], "p"]]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", Cell[TextData[{
+  "Arrays ",
+  Cell[BoxData[
+   FormBox[
+    SubscriptBox["A", 
+     RowBox[{"cross", "(", 
+      RowBox[{"m", ",", "p"}], ")"}]], TraditionalForm]],ExpressionUUID->
+   "568e3d0f-b7dc-4d6a-9706-68ea02d0c024"],
+  ", ",
+  Cell[BoxData[
+   FormBox[
+    SuperscriptBox[
+     SubscriptBox["C", 
+      RowBox[{"cross", ",", "n"}]], 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"1", "-", "3"}], ")"}], ",", "\[ScriptL]"}]], 
+    TraditionalForm]],ExpressionUUID->"661b9098-fe01-4bcc-9231-37925d02fb00"],
+  
+  " "
+ }], "Section",
+  CellChangeTimes->{{3.737684813925489*^9, 3.737684892967095*^9}, {
+   3.73768506474014*^9, 3.7376850742949038`*^9}, {3.754312393630652*^9, 
+   3.7543123944839*^9}},ExpressionUUID->
+  "e3dfe276-05ba-419a-b656-b8ecc2a16980"]}], "Input",
+ CellChangeTimes->{{3.8114969122908993`*^9, 3.8114971131612387`*^9}, {
+  3.811497184724247*^9, 
+  3.811497292070907*^9}},ExpressionUUID->"4d5542bb-5891-433a-8cab-\
+b667fb5f2e29"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Ampcross", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"0", ",", "0", ",", 
+         RowBox[{
+          FractionBox[
+           RowBox[{"9", " ", 
+            SubscriptBox["b", "1"]}], "196"], "+", 
+          FractionBox[
+           RowBox[{"3", " ", "f", " ", 
+            SubscriptBox["b", "1"]}], "28"], "+", 
+          FractionBox[
+           RowBox[{"3", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "1"]}], "32"], "+", 
+          FractionBox[
+           RowBox[{"3", " ", 
+            SubscriptBox["b", "2"]}], "28"], "+", 
+          FractionBox[
+           RowBox[{"f", " ", 
+            SubscriptBox["b", "2"]}], "8"], "-", 
+          FractionBox[
+           SubscriptBox["b", 
+            SuperscriptBox["K", "2"]], "14"], "-", 
+          FractionBox[
+           RowBox[{"f", " ", 
+            SubscriptBox["b", 
+             SuperscriptBox["K", "2"]]}], "12"], "-", 
+          FractionBox[
+           RowBox[{"3", " ", "f", " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "56"], "-", 
+          FractionBox[
+           RowBox[{"3", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "32"], "-", 
+          FractionBox[
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["K", "2"], "p"]], "84"], "-", 
+          RowBox[{
+           FractionBox["5", "144"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["K", "2"], "p"]]}]}], ",", "0", ",", 
+         RowBox[{
+          FractionBox[
+           RowBox[{"3", " ", "f", " ", 
+            SubscriptBox["b", "1"]}], "14"], "+", 
+          FractionBox[
+           RowBox[{"3", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "1"]}], "8"], "+", 
+          FractionBox[
+           RowBox[{"3", " ", 
+            SubscriptBox["b", "2"]}], "28"], "+", 
+          FractionBox[
+           RowBox[{"3", " ", "f", " ", 
+            SubscriptBox["b", "2"]}], "8"], "+", 
+          FractionBox[
+           SubscriptBox["b", 
+            SuperscriptBox["K", "2"]], "7"], "-", 
+          FractionBox[
+           RowBox[{"3", " ", "f", " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "28"], "-", 
+          FractionBox[
+           RowBox[{"3", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "8"], "+", 
+          FractionBox[
+           RowBox[{"9", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "112"], "+", 
+          FractionBox[
+           RowBox[{"5", " ", 
+            SuperscriptBox["f", "3"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "32"], "+", 
+          RowBox[{
+           FractionBox["9", "112"], " ", 
+           SuperscriptBox["f", "2"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "+", 
+          RowBox[{
+           FractionBox["5", "32"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "+", 
+          FractionBox[
+           RowBox[{"5", " ", 
+            SubscriptBox["b", 
+             SubscriptBox[
+              SuperscriptBox["K", "2"], "p"]]}], "84"], "+", 
+          RowBox[{
+           FractionBox["1", "48"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["K", "2"], "p"]]}], "+", 
+          FractionBox[
+           RowBox[{"3", " ", 
+            SubscriptBox["b", 
+             SubscriptBox[
+              SuperscriptBox["\[CapitalPi]", "2"], "p"]]}], "28"], "+", 
+          RowBox[{
+           FractionBox["3", "16"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["\[CapitalPi]", "2"], "p"]]}]}], ",", "0", ",", 
+         RowBox[{
+          FractionBox[
+           RowBox[{"3", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "1"]}], "8"], "+", 
+          FractionBox[
+           RowBox[{"f", " ", 
+            SubscriptBox["b", "2"]}], "4"], "+", 
+          FractionBox[
+           RowBox[{"f", " ", 
+            SubscriptBox["b", 
+             SuperscriptBox["K", "2"]]}], "3"], "-", 
+          FractionBox[
+           RowBox[{"3", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "8"], "+", 
+          FractionBox[
+           RowBox[{"5", " ", 
+            SuperscriptBox["f", "3"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "16"], "+", 
+          RowBox[{
+           FractionBox["5", "16"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "+", 
+          RowBox[{
+           FractionBox["13", "72"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["K", "2"], "p"]]}], "+", 
+          RowBox[{
+           FractionBox["3", "8"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["\[CapitalPi]", "2"], "p"]]}]}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", 
+         RowBox[{
+          FractionBox[
+           RowBox[{"3", " ", 
+            SubscriptBox["b", "1"]}], "14"], "+", 
+          FractionBox[
+           RowBox[{"f", " ", 
+            SubscriptBox["b", "1"]}], "4"], "+", 
+          FractionBox[
+           SubscriptBox["b", "2"], "4"], "-", 
+          FractionBox[
+           SubscriptBox["b", 
+            SuperscriptBox["K", "2"]], "6"], "-", 
+          FractionBox[
+           RowBox[{"f", " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "8"], "-", 
+          FractionBox[
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["K", "2"], "p"]], "36"]}], ",", "0", ",", 
+         RowBox[{
+          FractionBox[
+           RowBox[{"2", " ", "f", " ", 
+            SubscriptBox["b", "1"]}], "7"], "-", 
+          FractionBox[
+           RowBox[{"3", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "1"]}], "8"], "+", 
+          FractionBox[
+           SubscriptBox["b", "2"], "28"], "-", 
+          FractionBox[
+           RowBox[{"f", " ", 
+            SubscriptBox["b", "2"]}], "2"], "+", 
+          FractionBox[
+           SubscriptBox["b", 
+            SuperscriptBox["K", "2"]], "21"], "-", 
+          FractionBox[
+           RowBox[{"f", " ", 
+            SubscriptBox["b", 
+             SuperscriptBox["K", "2"]]}], "6"], "-", 
+          FractionBox[
+           RowBox[{"f", " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "7"], "+", 
+          FractionBox[
+           RowBox[{"3", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "8"], "+", 
+          FractionBox[
+           RowBox[{"3", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "16"], "+", 
+          RowBox[{
+           FractionBox["3", "16"], " ", 
+           SuperscriptBox["f", "2"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "+", 
+          FractionBox[
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["K", "2"], "p"]], "18"], "-", 
+          RowBox[{
+           FractionBox["7", "144"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["K", "2"], "p"]]}], "+", 
+          FractionBox[
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["\[CapitalPi]", "2"], "p"]], "7"], "-", 
+          RowBox[{
+           FractionBox["3", "16"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["\[CapitalPi]", "2"], "p"]]}]}], ",", "0", ",", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", 
+            FractionBox["3", "4"]}], " ", 
+           SuperscriptBox["f", "2"], " ", 
+           SubscriptBox["b", "1"]}], "-", 
+          FractionBox[
+           RowBox[{"3", " ", "f", " ", 
+            SubscriptBox["b", "2"]}], "4"], "-", 
+          RowBox[{"f", " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["K", "2"]]}], "+", 
+          FractionBox[
+           RowBox[{"3", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "4"], "-", 
+          FractionBox[
+           RowBox[{"5", " ", 
+            SuperscriptBox["f", "3"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "16"], "-", 
+          RowBox[{
+           FractionBox["5", "16"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "-", 
+          RowBox[{
+           FractionBox["5", "12"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["K", "2"], "p"]]}], "-", 
+          RowBox[{
+           FractionBox["3", "4"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["\[CapitalPi]", "2"], "p"]]}]}], ",", "0"}], 
+        "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         FractionBox[
+          SubscriptBox["b", "1"], "4"], ",", "0", ",", 
+         RowBox[{
+          RowBox[{"-", 
+           FractionBox[
+            RowBox[{"15", " ", 
+             SubscriptBox["b", "1"]}], "49"]}], "-", 
+          FractionBox[
+           RowBox[{"27", " ", "f", " ", 
+            SubscriptBox["b", "1"]}], "28"], "-", 
+          FractionBox[
+           RowBox[{"3", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "1"]}], "16"], "-", 
+          FractionBox[
+           RowBox[{"6", " ", 
+            SubscriptBox["b", "2"]}], "7"], "-", 
+          FractionBox[
+           RowBox[{"f", " ", 
+            SubscriptBox["b", "2"]}], "8"], "-", 
+          FractionBox[
+           RowBox[{"3", " ", 
+            SubscriptBox["b", 
+             SuperscriptBox["K", "2"]]}], "14"], "+", 
+          FractionBox[
+           RowBox[{"f", " ", 
+            SubscriptBox["b", 
+             SuperscriptBox["K", "2"]]}], "3"], "+", 
+          FractionBox[
+           RowBox[{"27", " ", "f", " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "56"], "+", 
+          FractionBox[
+           RowBox[{"3", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "16"], "-", 
+          FractionBox[
+           RowBox[{"5", " ", 
+            SubscriptBox["b", 
+             SubscriptBox[
+              SuperscriptBox["K", "2"], "p"]]}], "42"], "+", 
+          RowBox[{
+           FractionBox["7", "72"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["K", "2"], "p"]]}], "-", 
+          FractionBox[
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["\[CapitalPi]", "2"], "p"]], "4"]}], ",", "0", 
+         ",", 
+         RowBox[{
+          RowBox[{"-", 
+           FractionBox[
+            RowBox[{"13", " ", "f", " ", 
+             SubscriptBox["b", "1"]}], "14"]}], "-", 
+          FractionBox[
+           RowBox[{"3", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "1"]}], "8"], "-", 
+          FractionBox[
+           RowBox[{"5", " ", 
+            SubscriptBox["b", "2"]}], "14"], "+", 
+          FractionBox[
+           RowBox[{"f", " ", 
+            SubscriptBox["b", "2"]}], "8"], "-", 
+          FractionBox[
+           RowBox[{"10", " ", 
+            SubscriptBox["b", 
+             SuperscriptBox["K", "2"]]}], "21"], "+", 
+          FractionBox[
+           RowBox[{"7", " ", "f", " ", 
+            SubscriptBox["b", 
+             SuperscriptBox["K", "2"]]}], "6"], "+", 
+          FractionBox[
+           RowBox[{"13", " ", "f", " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "28"], "+", 
+          FractionBox[
+           RowBox[{"3", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "8"], "-", 
+          FractionBox[
+           RowBox[{"3", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "7"], "-", 
+          FractionBox[
+           RowBox[{"15", " ", 
+            SuperscriptBox["f", "3"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "32"], "-", 
+          RowBox[{
+           FractionBox["3", "7"], " ", 
+           SuperscriptBox["f", "2"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "-", 
+          RowBox[{
+           FractionBox["15", "32"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "-", 
+          FractionBox[
+           RowBox[{"59", " ", 
+            SubscriptBox["b", 
+             SubscriptBox[
+              SuperscriptBox["K", "2"], "p"]]}], "252"], "+", 
+          RowBox[{
+           FractionBox["5", "18"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["K", "2"], "p"]]}], "-", 
+          FractionBox[
+           RowBox[{"13", " ", 
+            SubscriptBox["b", 
+             SubscriptBox[
+              SuperscriptBox["\[CapitalPi]", "2"], "p"]]}], "28"]}], ",", "0",
+          ",", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", 
+            FractionBox["3", "4"]}], " ", 
+           SuperscriptBox["f", "2"], " ", 
+           SubscriptBox["b", "1"]}], "-", 
+          FractionBox[
+           RowBox[{"f", " ", 
+            SubscriptBox["b", "2"]}], "4"], "-", 
+          FractionBox[
+           RowBox[{"f", " ", 
+            SubscriptBox["b", 
+             SuperscriptBox["K", "2"]]}], "3"], "+", 
+          FractionBox[
+           RowBox[{"3", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "4"], "-", 
+          FractionBox[
+           RowBox[{"15", " ", 
+            SuperscriptBox["f", "3"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "16"], "-", 
+          RowBox[{
+           FractionBox["15", "16"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "-", 
+          RowBox[{
+           FractionBox["11", "36"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["K", "2"], "p"]]}], "-", 
+          RowBox[{
+           FractionBox["3", "4"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["\[CapitalPi]", "2"], "p"]]}]}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", 
+         RowBox[{
+          RowBox[{"-", 
+           FractionBox[
+            RowBox[{"5", " ", 
+             SubscriptBox["b", "1"]}], "7"]}], "-", 
+          FractionBox[
+           RowBox[{"f", " ", 
+            SubscriptBox["b", "1"]}], "4"], "+", 
+          FractionBox[
+           SubscriptBox["b", 
+            SuperscriptBox["K", "2"]], "2"], "+", 
+          FractionBox[
+           RowBox[{"f", " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "8"], "+", 
+          FractionBox[
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["K", "2"], "p"]], "12"]}], ",", "0", ",", 
+         RowBox[{
+          FractionBox[
+           RowBox[{"3", " ", "f", " ", 
+            SubscriptBox["b", "1"]}], "7"], "+", 
+          FractionBox[
+           RowBox[{"3", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "1"]}], "4"], "+", 
+          FractionBox[
+           RowBox[{"5", " ", 
+            SubscriptBox["b", "2"]}], "7"], "+", 
+          FractionBox[
+           RowBox[{"f", " ", 
+            SubscriptBox["b", "2"]}], "2"], "+", 
+          FractionBox[
+           RowBox[{"20", " ", 
+            SubscriptBox["b", 
+             SuperscriptBox["K", "2"]]}], "21"], "-", 
+          FractionBox[
+           RowBox[{"f", " ", 
+            SubscriptBox["b", 
+             SuperscriptBox["K", "2"]]}], "3"], "-", 
+          FractionBox[
+           RowBox[{"3", " ", "f", " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "14"], "-", 
+          FractionBox[
+           RowBox[{"3", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "4"], "-", 
+          FractionBox[
+           RowBox[{"3", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "8"], "-", 
+          RowBox[{
+           FractionBox["3", "8"], " ", 
+           SuperscriptBox["f", "2"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "+", 
+          FractionBox[
+           RowBox[{"29", " ", 
+            SubscriptBox["b", 
+             SubscriptBox[
+              SuperscriptBox["K", "2"], "p"]]}], "126"], "-", 
+          RowBox[{
+           FractionBox["1", "72"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["K", "2"], "p"]]}], "+", 
+          FractionBox[
+           RowBox[{"3", " ", 
+            SubscriptBox["b", 
+             SubscriptBox[
+              SuperscriptBox["\[CapitalPi]", "2"], "p"]]}], "14"], "+", 
+          RowBox[{
+           FractionBox["3", "8"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["\[CapitalPi]", "2"], "p"]]}]}], ",", "0", ",", 
+         RowBox[{
+          FractionBox[
+           RowBox[{"3", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "1"]}], "2"], "+", 
+          FractionBox[
+           RowBox[{"3", " ", "f", " ", 
+            SubscriptBox["b", "2"]}], "4"], "+", 
+          RowBox[{"f", " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["K", "2"]]}], "-", 
+          FractionBox[
+           RowBox[{"3", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "2"], "+", 
+          FractionBox[
+           RowBox[{"15", " ", 
+            SuperscriptBox["f", "3"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "16"], "+", 
+          RowBox[{
+           FractionBox["15", "16"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "+", 
+          RowBox[{
+           FractionBox["2", "3"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["K", "2"], "p"]]}], "+", 
+          RowBox[{
+           FractionBox["3", "2"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["\[CapitalPi]", "2"], "p"]]}]}], ",", "0"}], 
+        "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", "0", ",", 
+         RowBox[{
+          FractionBox[
+           RowBox[{"25", " ", 
+            SubscriptBox["b", "1"]}], "49"], "+", 
+          FractionBox[
+           RowBox[{"6", " ", "f", " ", 
+            SubscriptBox["b", "1"]}], "7"], "+", 
+          FractionBox[
+           RowBox[{"3", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "1"]}], "32"], "-", 
+          FractionBox[
+           RowBox[{"5", " ", 
+            SubscriptBox["b", 
+             SuperscriptBox["K", "2"]]}], "7"], "-", 
+          FractionBox[
+           RowBox[{"f", " ", 
+            SubscriptBox["b", 
+             SuperscriptBox["K", "2"]]}], "4"], "-", 
+          FractionBox[
+           RowBox[{"3", " ", "f", " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "7"], "-", 
+          FractionBox[
+           RowBox[{"3", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "32"], "-", 
+          FractionBox[
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["K", "2"], "p"]], "28"], "-", 
+          RowBox[{
+           FractionBox["1", "16"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["K", "2"], "p"]]}], "+", 
+          FractionBox[
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["\[CapitalPi]", "2"], "p"]], "4"]}], ",", "0", 
+         ",", 
+         RowBox[{
+          FractionBox[
+           RowBox[{"5", " ", "f", " ", 
+            SubscriptBox["b", "1"]}], "7"], "-", 
+          FractionBox[
+           RowBox[{"3", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "1"]}], "8"], "-", 
+          FractionBox[
+           RowBox[{"f", " ", 
+            SubscriptBox["b", "2"]}], "2"], "-", 
+          FractionBox[
+           RowBox[{"7", " ", "f", " ", 
+            SubscriptBox["b", 
+             SuperscriptBox["K", "2"]]}], "6"], "-", 
+          FractionBox[
+           RowBox[{"5", " ", "f", " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "14"], "+", 
+          FractionBox[
+           RowBox[{"3", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "8"], "+", 
+          FractionBox[
+           RowBox[{"69", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "112"], "+", 
+          FractionBox[
+           RowBox[{"15", " ", 
+            SuperscriptBox["f", "3"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "32"], "+", 
+          RowBox[{
+           FractionBox["69", "112"], " ", 
+           SuperscriptBox["f", "2"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "+", 
+          RowBox[{
+           FractionBox["15", "32"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "+", 
+          FractionBox[
+           RowBox[{"5", " ", 
+            SubscriptBox["b", 
+             SubscriptBox[
+              SuperscriptBox["K", "2"], "p"]]}], "42"], "-", 
+          RowBox[{
+           FractionBox["61", "144"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["K", "2"], "p"]]}], "+", 
+          FractionBox[
+           RowBox[{"5", " ", 
+            SubscriptBox["b", 
+             SubscriptBox[
+              SuperscriptBox["\[CapitalPi]", "2"], "p"]]}], "14"], "-", 
+          RowBox[{
+           FractionBox["9", "16"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["\[CapitalPi]", "2"], "p"]]}]}], ",", "0", ",", 
+         RowBox[{
+          FractionBox[
+           RowBox[{"3", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "1"]}], "8"], "-", 
+          FractionBox[
+           RowBox[{"3", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "8"], "+", 
+          FractionBox[
+           RowBox[{"15", " ", 
+            SuperscriptBox["f", "3"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "16"], "+", 
+          RowBox[{
+           FractionBox["15", "16"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "+", 
+          RowBox[{
+           FractionBox["1", "8"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["K", "2"], "p"]]}], "+", 
+          RowBox[{
+           FractionBox["3", "8"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["\[CapitalPi]", "2"], "p"]]}]}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", "0", ",", "0", ",", 
+         RowBox[{
+          RowBox[{"-", 
+           FractionBox[
+            RowBox[{"5", " ", "f", " ", 
+             SubscriptBox["b", "1"]}], "7"]}], "-", 
+          FractionBox[
+           RowBox[{"3", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "1"]}], "8"], "+", 
+          FractionBox[
+           RowBox[{"f", " ", 
+            SubscriptBox["b", 
+             SuperscriptBox["K", "2"]]}], "2"], "+", 
+          FractionBox[
+           RowBox[{"5", " ", "f", " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "14"], "+", 
+          FractionBox[
+           RowBox[{"3", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "8"], "+", 
+          FractionBox[
+           RowBox[{"3", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "16"], "+", 
+          RowBox[{
+           FractionBox["3", "16"], " ", 
+           SuperscriptBox["f", "2"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "-", 
+          FractionBox[
+           RowBox[{"5", " ", 
+            SubscriptBox["b", 
+             SubscriptBox[
+              SuperscriptBox["K", "2"], "p"]]}], "42"], "+", 
+          RowBox[{
+           FractionBox["1", "16"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["K", "2"], "p"]]}], "-", 
+          FractionBox[
+           RowBox[{"5", " ", 
+            SubscriptBox["b", 
+             SubscriptBox[
+              SuperscriptBox["\[CapitalPi]", "2"], "p"]]}], "14"], "-", 
+          RowBox[{
+           FractionBox["3", "16"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["\[CapitalPi]", "2"], "p"]]}]}], ",", "0", ",", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", 
+            FractionBox["3", "4"]}], " ", 
+           SuperscriptBox["f", "2"], " ", 
+           SubscriptBox["b", "1"]}], "+", 
+          FractionBox[
+           RowBox[{"3", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "4"], "-", 
+          FractionBox[
+           RowBox[{"15", " ", 
+            SuperscriptBox["f", "3"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "16"], "-", 
+          RowBox[{
+           FractionBox["15", "16"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "-", 
+          RowBox[{
+           FractionBox["1", "4"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["K", "2"], "p"]]}], "-", 
+          RowBox[{
+           FractionBox["3", "4"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["\[CapitalPi]", "2"], "p"]]}]}], ",", "0"}], 
+        "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", "0", ",", "0", ",", "0", ",", 
+         RowBox[{
+          FractionBox[
+           RowBox[{"3", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "1"]}], "8"], "-", 
+          FractionBox[
+           RowBox[{"3", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "8"], "-", 
+          FractionBox[
+           RowBox[{"15", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "56"], "-", 
+          FractionBox[
+           RowBox[{"5", " ", 
+            SuperscriptBox["f", "3"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "32"], "-", 
+          RowBox[{
+           FractionBox["15", "56"], " ", 
+           SuperscriptBox["f", "2"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "-", 
+          RowBox[{
+           FractionBox["5", "32"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "+", 
+          RowBox[{
+           FractionBox["1", "8"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["K", "2"], "p"]]}], "+", 
+          RowBox[{
+           FractionBox["3", "8"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["\[CapitalPi]", "2"], "p"]]}]}], ",", "0", ",", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", 
+            FractionBox["5", "16"]}], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", "\[Eta]"]}], "-", 
+          RowBox[{
+           FractionBox["5", "16"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}]}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", "0", ",", "0", ",", "0", ",", "0", ",", 
+         RowBox[{
+          FractionBox[
+           RowBox[{"5", " ", 
+            SuperscriptBox["f", "3"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "16"], "+", 
+          RowBox[{
+           FractionBox["5", "16"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}]}], ",", "0"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+        "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0"}], 
+        "}"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         FractionBox[
+          RowBox[{
+           SuperscriptBox["f", "2"], " ", 
+           SubscriptBox["b", "1"]}], "8"], ",", "0", ",", 
+         RowBox[{
+          RowBox[{"-", 
+           FractionBox[
+            RowBox[{"3", " ", "f", " ", 
+             SubscriptBox["b", "1"]}], "28"]}], "+", 
+          FractionBox[
+           RowBox[{"5", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "1"]}], "16"], "-", 
+          FractionBox[
+           RowBox[{"f", " ", 
+            SubscriptBox["b", "2"]}], "8"], "+", 
+          FractionBox[
+           RowBox[{"f", " ", 
+            SubscriptBox["b", 
+             SuperscriptBox["K", "2"]]}], "12"], "-", 
+          FractionBox[
+           RowBox[{"3", " ", "f", " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "56"], "-", 
+          FractionBox[
+           RowBox[{"3", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "16"], "+", 
+          FractionBox[
+           RowBox[{"3", " ", "f", " ", 
+            SubscriptBox["b", "\[Eta]"]}], "196"], "+", 
+          FractionBox[
+           RowBox[{"5", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "28"], "+", 
+          FractionBox[
+           RowBox[{"21", " ", 
+            SuperscriptBox["f", "3"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "32"], "+", 
+          RowBox[{
+           FractionBox["3", "28"], " ", 
+           SuperscriptBox["f", "2"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "+", 
+          RowBox[{
+           FractionBox["9", "16"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "-", 
+          FractionBox[
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["K", "2"], "p"]], "28"], "+", 
+          RowBox[{
+           FractionBox["7", "72"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["K", "2"], "p"]]}], "+", 
+          FractionBox[
+           RowBox[{"15", " ", 
+            SubscriptBox["b", 
+             SubscriptBox[
+              SuperscriptBox["\[CapitalPi]", "2"], "p"]]}], "98"], "+", 
+          RowBox[{
+           FractionBox["3", "7"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["\[CapitalPi]", "2"], "p"]]}]}], ",", "0", ",", 
+         RowBox[{
+          RowBox[{"-", 
+           FractionBox[
+            RowBox[{"3", " ", "f", " ", 
+             SubscriptBox["b", "1"]}], "14"]}], "-", 
+          FractionBox[
+           RowBox[{
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "1"]}], "4"], "-", 
+          FractionBox[
+           RowBox[{"3", " ", "f", " ", 
+            SubscriptBox["b", "2"]}], "8"], "+", 
+          FractionBox[
+           RowBox[{"3", " ", "f", " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "28"], "-", 
+          FractionBox[
+           RowBox[{
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "8"], "+", 
+          FractionBox[
+           RowBox[{"27", " ", 
+            SuperscriptBox["f", "3"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "32"], "-", 
+          RowBox[{
+           FractionBox["9", "56"], " ", 
+           SuperscriptBox["f", "2"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "+", 
+          RowBox[{
+           FractionBox["21", "32"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "-", 
+          FractionBox[
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["K", "2"], "p"]], "28"], "+", 
+          RowBox[{
+           FractionBox["1", "24"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["K", "2"], "p"]]}], "-", 
+          FractionBox[
+           RowBox[{"3", " ", 
+            SubscriptBox["b", 
+             SubscriptBox[
+              SuperscriptBox["\[CapitalPi]", "2"], "p"]]}], "28"], "+", 
+          RowBox[{
+           FractionBox["27", "56"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["\[CapitalPi]", "2"], "p"]]}]}], ",", "0", ",", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", 
+            FractionBox["3", "4"]}], " ", 
+           SuperscriptBox["f", "2"], " ", 
+           SubscriptBox["b", "1"]}], "-", 
+          FractionBox[
+           RowBox[{"f", " ", 
+            SubscriptBox["b", "2"]}], "4"], "-", 
+          FractionBox[
+           RowBox[{"f", " ", 
+            SubscriptBox["b", 
+             SuperscriptBox["K", "2"]]}], "3"], "+", 
+          FractionBox[
+           RowBox[{"3", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "4"], "-", 
+          FractionBox[
+           RowBox[{"15", " ", 
+            SuperscriptBox["f", "3"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "16"], "-", 
+          RowBox[{
+           FractionBox["15", "16"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "-", 
+          RowBox[{
+           FractionBox["11", "36"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["K", "2"], "p"]]}], "-", 
+          RowBox[{
+           FractionBox["3", "4"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["\[CapitalPi]", "2"], "p"]]}]}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", 
+         RowBox[{
+          RowBox[{"-", 
+           FractionBox[
+            RowBox[{"13", " ", "f", " ", 
+             SubscriptBox["b", "1"]}], "28"]}], "-", 
+          FractionBox[
+           RowBox[{"5", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "1"]}], "4"], "-", 
+          FractionBox[
+           RowBox[{"f", " ", 
+            SubscriptBox["b", "2"]}], "4"], "+", 
+          FractionBox[
+           RowBox[{"f", " ", 
+            SubscriptBox["b", 
+             SuperscriptBox["K", "2"]]}], "6"], "-", 
+          FractionBox[
+           RowBox[{"f", " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "8"], "+", 
+          FractionBox[
+           RowBox[{"3", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "8"], "-", 
+          FractionBox[
+           RowBox[{"f", " ", 
+            SubscriptBox["b", "\[Eta]"]}], "14"], "+", 
+          FractionBox[
+           RowBox[{
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "4"], "+", 
+          RowBox[{
+           FractionBox["1", "4"], " ", 
+           SuperscriptBox["f", "2"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "-", 
+          FractionBox[
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["K", "2"], "p"]], "12"], "-", 
+          RowBox[{
+           FractionBox["1", "18"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["K", "2"], "p"]]}], "+", 
+          FractionBox[
+           RowBox[{"5", " ", 
+            SubscriptBox["b", 
+             SubscriptBox[
+              SuperscriptBox["\[CapitalPi]", "2"], "p"]]}], "14"], "-", 
+          RowBox[{
+           FractionBox["1", "4"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["\[CapitalPi]", "2"], "p"]]}]}], ",", "0", ",", 
+         RowBox[{
+          RowBox[{"-", 
+           FractionBox[
+            RowBox[{"5", " ", "f", " ", 
+             SubscriptBox["b", "1"]}], "7"]}], "-", 
+          FractionBox[
+           RowBox[{"13", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "1"]}], "4"], "-", 
+          FractionBox[
+           RowBox[{"f", " ", 
+            SubscriptBox["b", "2"]}], "4"], "+", 
+          FractionBox[
+           RowBox[{"f", " ", 
+            SubscriptBox["b", 
+             SuperscriptBox["K", "2"]]}], "6"], "+", 
+          FractionBox[
+           RowBox[{"5", " ", "f", " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "14"], "+", 
+          FractionBox[
+           RowBox[{"9", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "4"], "-", 
+          FractionBox[
+           RowBox[{"73", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "56"], "-", 
+          FractionBox[
+           RowBox[{"33", " ", 
+            SuperscriptBox["f", "3"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "8"], "-", 
+          RowBox[{
+           FractionBox["57", "56"], " ", 
+           SuperscriptBox["f", "2"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "-", 
+          RowBox[{
+           FractionBox["63", "16"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "-", 
+          FractionBox[
+           RowBox[{"5", " ", 
+            SubscriptBox["b", 
+             SubscriptBox[
+              SuperscriptBox["K", "2"], "p"]]}], "42"], "-", 
+          RowBox[{
+           FractionBox["49", "72"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["K", "2"], "p"]]}], "-", 
+          FractionBox[
+           RowBox[{"5", " ", 
+            SubscriptBox["b", 
+             SubscriptBox[
+              SuperscriptBox["\[CapitalPi]", "2"], "p"]]}], "14"], "-", 
+          RowBox[{
+           FractionBox["139", "56"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["\[CapitalPi]", "2"], "p"]]}]}], ",", "0", ",", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", 
+            FractionBox["3", "2"]}], " ", 
+           SuperscriptBox["f", "2"], " ", 
+           SubscriptBox["b", "1"]}], "+", 
+          FractionBox[
+           RowBox[{"f", " ", 
+            SubscriptBox["b", "2"]}], "4"], "+", 
+          FractionBox[
+           RowBox[{"f", " ", 
+            SubscriptBox["b", 
+             SuperscriptBox["K", "2"]]}], "3"], "+", 
+          FractionBox[
+           RowBox[{"3", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "2"], "-", 
+          FractionBox[
+           RowBox[{"75", " ", 
+            SuperscriptBox["f", "3"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "16"], "-", 
+          RowBox[{
+           FractionBox["75", "16"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "-", 
+          RowBox[{
+           FractionBox["4", "9"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["K", "2"], "p"]]}], "-", 
+          RowBox[{
+           FractionBox["3", "2"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["\[CapitalPi]", "2"], "p"]]}]}], ",", "0"}], 
+        "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"-", 
+           FractionBox[
+            RowBox[{"f", " ", 
+             SubscriptBox["b", "1"]}], "2"]}], "-", 
+          FractionBox[
+           RowBox[{
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "1"]}], "8"], "-", 
+          FractionBox[
+           RowBox[{"f", " ", 
+            SubscriptBox["b", "\[Eta]"]}], "4"]}], ",", "0", ",", 
+         RowBox[{
+          FractionBox[
+           RowBox[{"17", " ", "f", " ", 
+            SubscriptBox["b", "1"]}], "28"], "+", 
+          FractionBox[
+           RowBox[{"33", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "1"]}], "8"], "+", 
+          FractionBox[
+           RowBox[{"11", " ", "f", " ", 
+            SubscriptBox["b", "2"]}], "8"], "-", 
+          FractionBox[
+           RowBox[{"f", " ", 
+            SubscriptBox["b", 
+             SuperscriptBox["K", "2"]]}], "6"], "+", 
+          FractionBox[
+           RowBox[{"15", " ", "f", " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "56"], "-", 
+          FractionBox[
+           RowBox[{"9", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "4"], "+", 
+          FractionBox[
+           RowBox[{"2", " ", "f", " ", 
+            SubscriptBox["b", "\[Eta]"]}], "49"], "-", 
+          FractionBox[
+           RowBox[{"13", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "7"], "-", 
+          FractionBox[
+           RowBox[{"21", " ", 
+            SuperscriptBox["f", "3"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "16"], "-", 
+          RowBox[{
+           FractionBox["55", "28"], " ", 
+           SuperscriptBox["f", "2"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "-", 
+          RowBox[{
+           FractionBox["9", "8"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "+", 
+          FractionBox[
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["K", "2"], "p"]], "7"], "+", 
+          RowBox[{
+           FractionBox["5", "9"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["K", "2"], "p"]]}], "-", 
+          FractionBox[
+           RowBox[{"137", " ", 
+            SubscriptBox["b", 
+             SubscriptBox[
+              SuperscriptBox["\[CapitalPi]", "2"], "p"]]}], "196"], "+", 
+          RowBox[{
+           FractionBox["39", "28"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["\[CapitalPi]", "2"], "p"]]}]}], ",", "0", ",", 
+         RowBox[{
+          FractionBox[
+           RowBox[{"19", " ", "f", " ", 
+            SubscriptBox["b", "1"]}], "14"], "+", 
+          FractionBox[
+           RowBox[{"37", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "1"]}], "4"], "+", 
+          FractionBox[
+           RowBox[{"17", " ", "f", " ", 
+            SubscriptBox["b", "2"]}], "8"], "+", 
+          FractionBox[
+           RowBox[{"5", " ", "f", " ", 
+            SubscriptBox["b", 
+             SuperscriptBox["K", "2"]]}], "6"], "-", 
+          FractionBox[
+           RowBox[{"19", " ", "f", " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "28"], "-", 
+          FractionBox[
+           RowBox[{"15", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "2"], "+", 
+          FractionBox[
+           RowBox[{"47", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "28"], "+", 
+          FractionBox[
+           RowBox[{"231", " ", 
+            SuperscriptBox["f", "3"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "32"], "+", 
+          RowBox[{
+           FractionBox["3", "2"], " ", 
+           SuperscriptBox["f", "2"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "+", 
+          RowBox[{
+           FractionBox["243", "32"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "+", 
+          FractionBox[
+           RowBox[{"19", " ", 
+            SubscriptBox["b", 
+             SubscriptBox[
+              SuperscriptBox["K", "2"], "p"]]}], "84"], "+", 
+          RowBox[{
+           FractionBox["89", "36"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["K", "2"], "p"]]}], "+", 
+          FractionBox[
+           RowBox[{"19", " ", 
+            SubscriptBox["b", 
+             SubscriptBox[
+              SuperscriptBox["\[CapitalPi]", "2"], "p"]]}], "28"], "+", 
+          RowBox[{
+           FractionBox["44", "7"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["\[CapitalPi]", "2"], "p"]]}]}], ",", "0", ",", 
+         RowBox[{
+          FractionBox[
+           RowBox[{"9", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "1"]}], "2"], "+", 
+          FractionBox[
+           RowBox[{"3", " ", "f", " ", 
+            SubscriptBox["b", "2"]}], "4"], "+", 
+          RowBox[{"f", " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["K", "2"]]}], "-", 
+          FractionBox[
+           RowBox[{"9", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "2"], "+", 
+          FractionBox[
+           RowBox[{"135", " ", 
+            SuperscriptBox["f", "3"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "16"], "+", 
+          RowBox[{
+           FractionBox["135", "16"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "+", 
+          RowBox[{
+           FractionBox["5", "3"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["K", "2"], "p"]]}], "+", 
+          RowBox[{
+           FractionBox["9", "2"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["\[CapitalPi]", "2"], "p"]]}]}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", 
+         RowBox[{
+          FractionBox[
+           RowBox[{"69", " ", "f", " ", 
+            SubscriptBox["b", "1"]}], "28"], "+", 
+          FractionBox[
+           RowBox[{"5", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "1"]}], "4"], "-", 
+          FractionBox[
+           RowBox[{"f", " ", 
+            SubscriptBox["b", 
+             SuperscriptBox["K", "2"]]}], "2"], "-", 
+          FractionBox[
+           RowBox[{"3", " ", "f", " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "8"], "-", 
+          FractionBox[
+           RowBox[{"3", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "8"], "+", 
+          FractionBox[
+           RowBox[{"4", " ", "f", " ", 
+            SubscriptBox["b", "\[Eta]"]}], "7"], "-", 
+          FractionBox[
+           RowBox[{
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "4"], "-", 
+          RowBox[{
+           FractionBox["1", "4"], " ", 
+           SuperscriptBox["f", "2"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "+", 
+          FractionBox[
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["K", "2"], "p"]], "4"], "+", 
+          FractionBox[
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["\[CapitalPi]", "2"], "p"]], "7"], "+", 
+          RowBox[{
+           FractionBox["1", "4"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["\[CapitalPi]", "2"], "p"]]}]}], ",", "0", ",", 
+         RowBox[{
+          FractionBox[
+           RowBox[{"11", " ", "f", " ", 
+            SubscriptBox["b", "1"]}], "7"], "-", 
+          FractionBox[
+           RowBox[{"7", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "1"]}], "2"], "-", 
+          FractionBox[
+           RowBox[{"5", " ", "f", " ", 
+            SubscriptBox["b", "2"]}], "2"], "-", 
+          FractionBox[
+           RowBox[{"7", " ", "f", " ", 
+            SubscriptBox["b", 
+             SuperscriptBox["K", "2"]]}], "3"], "-", 
+          FractionBox[
+           RowBox[{"11", " ", "f", " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "14"], "+", 
+          RowBox[{"3", " ", 
+           SuperscriptBox["f", "2"], " ", 
+           SubscriptBox["b", "\[Delta]\[Eta]"]}], "+", 
+          FractionBox[
+           RowBox[{"143", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "28"], "+", 
+          FractionBox[
+           RowBox[{"33", " ", 
+            SuperscriptBox["f", "3"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "4"], "+", 
+          RowBox[{
+           FractionBox["141", "28"], " ", 
+           SuperscriptBox["f", "2"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "+", 
+          RowBox[{
+           FractionBox["63", "8"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "+", 
+          FractionBox[
+           RowBox[{"11", " ", 
+            SubscriptBox["b", 
+             SubscriptBox[
+              SuperscriptBox["K", "2"], "p"]]}], "42"], "-", 
+          RowBox[{
+           FractionBox["47", "36"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["K", "2"], "p"]]}], "+", 
+          FractionBox[
+           RowBox[{"11", " ", 
+            SubscriptBox["b", 
+             SubscriptBox[
+              SuperscriptBox["\[CapitalPi]", "2"], "p"]]}], "14"], "-", 
+          RowBox[{
+           FractionBox["57", "28"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["\[CapitalPi]", "2"], "p"]]}]}], ",", "0", ",", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", "6"}], " ", 
+           SuperscriptBox["f", "2"], " ", 
+           SubscriptBox["b", "1"]}], "-", 
+          FractionBox[
+           RowBox[{"9", " ", "f", " ", 
+            SubscriptBox["b", "2"]}], "4"], "-", 
+          RowBox[{"3", " ", "f", " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["K", "2"]]}], "+", 
+          RowBox[{"6", " ", 
+           SuperscriptBox["f", "2"], " ", 
+           SubscriptBox["b", "\[Delta]\[Eta]"]}], "+", 
+          FractionBox[
+           RowBox[{"45", " ", 
+            SuperscriptBox["f", "3"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "16"], "+", 
+          RowBox[{
+           FractionBox["45", "16"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "-", 
+          RowBox[{
+           FractionBox["5", "2"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["K", "2"], "p"]]}], "-", 
+          RowBox[{"6", " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["\[CapitalPi]", "2"], "p"]]}]}], ",", "0"}], 
+        "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", "0", ",", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", "4"}], " ", "f", " ", 
+           SubscriptBox["b", "1"]}], "-", 
+          FractionBox[
+           RowBox[{"71", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "1"]}], "16"], "+", 
+          FractionBox[
+           RowBox[{"7", " ", "f", " ", 
+            SubscriptBox["b", 
+             SuperscriptBox["K", "2"]]}], "4"], "+", 
+          FractionBox[
+           RowBox[{"9", " ", "f", " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "7"], "+", 
+          FractionBox[
+           RowBox[{"39", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "16"], "-", 
+          FractionBox[
+           RowBox[{"15", " ", "f", " ", 
+            SubscriptBox["b", "\[Eta]"]}], "49"], "+", 
+          FractionBox[
+           RowBox[{"47", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "28"], "+", 
+          FractionBox[
+           RowBox[{"21", " ", 
+            SuperscriptBox["f", "3"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "32"], "+", 
+          RowBox[{
+           FractionBox["13", "7"], " ", 
+           SuperscriptBox["f", "2"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "+", 
+          RowBox[{
+           FractionBox["9", "16"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "-", 
+          FractionBox[
+           RowBox[{"17", " ", 
+            SubscriptBox["b", 
+             SubscriptBox[
+              SuperscriptBox["K", "2"], "p"]]}], "28"], "-", 
+          RowBox[{
+           FractionBox["3", "8"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["K", "2"], "p"]]}], "-", 
+          FractionBox[
+           RowBox[{"187", " ", 
+            SubscriptBox["b", 
+             SubscriptBox[
+              SuperscriptBox["\[CapitalPi]", "2"], "p"]]}], "196"], "-", 
+          RowBox[{
+           FractionBox["51", "28"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["\[CapitalPi]", "2"], "p"]]}]}], ",", "0", ",", 
+         RowBox[{
+          RowBox[{"-", 
+           FractionBox[
+            RowBox[{"15", " ", "f", " ", 
+             SubscriptBox["b", "1"]}], "7"]}], "-", 
+          FractionBox[
+           RowBox[{"21", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "1"]}], "4"], "+", 
+          FractionBox[
+           RowBox[{"3", " ", "f", " ", 
+            SubscriptBox["b", "2"]}], "2"], "+", 
+          FractionBox[
+           RowBox[{"7", " ", "f", " ", 
+            SubscriptBox["b", 
+             SuperscriptBox["K", "2"]]}], "2"], "+", 
+          FractionBox[
+           RowBox[{"15", " ", "f", " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "14"], "+", 
+          FractionBox[
+           RowBox[{"15", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "4"], "-", 
+          FractionBox[
+           RowBox[{"237", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "56"], "-", 
+          FractionBox[
+           RowBox[{"543", " ", 
+            SuperscriptBox["f", "3"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "32"], "-", 
+          RowBox[{
+           FractionBox["225", "56"], " ", 
+           SuperscriptBox["f", "2"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "-", 
+          RowBox[{
+           FractionBox["549", "32"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "-", 
+          FractionBox[
+           RowBox[{"5", " ", 
+            SubscriptBox["b", 
+             SubscriptBox[
+              SuperscriptBox["K", "2"], "p"]]}], "14"], "-", 
+          RowBox[{
+           FractionBox["13", "24"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["K", "2"], "p"]]}], "-", 
+          FractionBox[
+           RowBox[{"15", " ", 
+            SubscriptBox["b", 
+             SubscriptBox[
+              SuperscriptBox["\[CapitalPi]", "2"], "p"]]}], "14"], "-", 
+          RowBox[{
+           FractionBox["169", "56"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["\[CapitalPi]", "2"], "p"]]}]}], ",", "0", ",", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", 
+            FractionBox["15", "4"]}], " ", 
+           SuperscriptBox["f", "2"], " ", 
+           SubscriptBox["b", "1"]}], "+", 
+          FractionBox[
+           RowBox[{"15", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "4"], "-", 
+          FractionBox[
+           RowBox[{"225", " ", 
+            SuperscriptBox["f", "3"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "16"], "-", 
+          RowBox[{
+           FractionBox["225", "16"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "-", 
+          RowBox[{
+           FractionBox["5", "4"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["K", "2"], "p"]]}], "-", 
+          RowBox[{
+           FractionBox["15", "4"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["\[CapitalPi]", "2"], "p"]]}]}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", "0", ",", "0", ",", 
+         RowBox[{
+          FractionBox[
+           RowBox[{"15", " ", "f", " ", 
+            SubscriptBox["b", "1"]}], "7"], "+", 
+          FractionBox[
+           RowBox[{"27", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "1"]}], "4"], "-", 
+          FractionBox[
+           RowBox[{"3", " ", "f", " ", 
+            SubscriptBox["b", 
+             SuperscriptBox["K", "2"]]}], "2"], "-", 
+          FractionBox[
+           RowBox[{"15", " ", "f", " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "14"], "-", 
+          FractionBox[
+           RowBox[{"21", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "4"], "-", 
+          FractionBox[
+           RowBox[{"213", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "56"], "-", 
+          FractionBox[
+           RowBox[{"33", " ", 
+            SuperscriptBox["f", "3"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "8"], "-", 
+          RowBox[{
+           FractionBox["225", "56"], " ", 
+           SuperscriptBox["f", "2"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "-", 
+          RowBox[{
+           FractionBox["63", "16"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "+", 
+          FractionBox[
+           RowBox[{"5", " ", 
+            SubscriptBox["b", 
+             SubscriptBox[
+              SuperscriptBox["K", "2"], "p"]]}], "14"], "+", 
+          RowBox[{
+           FractionBox["11", "8"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["K", "2"], "p"]]}], "+", 
+          FractionBox[
+           RowBox[{"15", " ", 
+            SubscriptBox["b", 
+             SubscriptBox[
+              SuperscriptBox["\[CapitalPi]", "2"], "p"]]}], "14"], "+", 
+          RowBox[{
+           FractionBox["253", "56"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["\[CapitalPi]", "2"], "p"]]}]}], ",", "0", ",", 
+         RowBox[{
+          FractionBox[
+           RowBox[{"15", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "1"]}], "2"], "-", 
+          FractionBox[
+           RowBox[{"15", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "2"], "+", 
+          FractionBox[
+           RowBox[{"135", " ", 
+            SuperscriptBox["f", "3"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "16"], "+", 
+          RowBox[{
+           FractionBox["135", "16"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "+", 
+          RowBox[{
+           FractionBox["5", "2"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["K", "2"], "p"]]}], "+", 
+          RowBox[{
+           FractionBox["15", "2"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["\[CapitalPi]", "2"], "p"]]}]}], ",", "0"}], 
+        "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", "0", ",", "0", ",", "0", ",", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", 
+            FractionBox["15", "4"]}], " ", 
+           SuperscriptBox["f", "2"], " ", 
+           SubscriptBox["b", "1"]}], "+", 
+          FractionBox[
+           RowBox[{"15", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "4"], "+", 
+          FractionBox[
+           RowBox[{"75", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "28"], "+", 
+          FractionBox[
+           RowBox[{"285", " ", 
+            SuperscriptBox["f", "3"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "32"], "+", 
+          RowBox[{
+           FractionBox["75", "28"], " ", 
+           SuperscriptBox["f", "2"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "+", 
+          RowBox[{
+           FractionBox["285", "32"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "-", 
+          RowBox[{
+           FractionBox["5", "4"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["K", "2"], "p"]]}], "-", 
+          RowBox[{
+           FractionBox["15", "4"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["\[CapitalPi]", "2"], "p"]]}]}], ",", "0", ",", 
+         RowBox[{
+          FractionBox[
+           RowBox[{"105", " ", 
+            SuperscriptBox["f", "3"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "16"], "+", 
+          RowBox[{
+           FractionBox["105", "16"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}]}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", "0", ",", "0", ",", "0", ",", "0", ",", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", 
+            FractionBox["105", "16"]}], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", "\[Eta]"]}], "-", 
+          RowBox[{
+           FractionBox["105", "16"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}]}], ",", "0"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+        "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0"}], 
+        "}"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", 
+            FractionBox["1", "8"]}], " ", 
+           SuperscriptBox["f", "2"], " ", 
+           SubscriptBox["b", "1"]}], "+", 
+          FractionBox[
+           RowBox[{
+            SuperscriptBox["f", "3"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "8"]}], ",", "0", ",", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", 
+            FractionBox["13", "32"]}], " ", 
+           SuperscriptBox["f", "2"], " ", 
+           SubscriptBox["b", "1"]}], "+", 
+          FractionBox[
+           RowBox[{"9", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "32"], "-", 
+          FractionBox[
+           RowBox[{"5", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "28"], "-", 
+          FractionBox[
+           RowBox[{"17", " ", 
+            SuperscriptBox["f", "3"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "16"], "-", 
+          RowBox[{
+           FractionBox["3", "28"], " ", 
+           SuperscriptBox["f", "2"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "-", 
+          RowBox[{
+           FractionBox["9", "8"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "-", 
+          RowBox[{
+           FractionBox["1", "16"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["K", "2"], "p"]]}], "-", 
+          RowBox[{
+           FractionBox["3", "7"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["\[CapitalPi]", "2"], "p"]]}]}], ",", "0", ",", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", 
+            FractionBox["1", "8"]}], " ", 
+           SuperscriptBox["f", "2"], " ", 
+           SubscriptBox["b", "1"]}], "+", 
+          FractionBox[
+           RowBox[{"3", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "8"], "+", 
+          FractionBox[
+           RowBox[{"5", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "112"], "-", 
+          FractionBox[
+           RowBox[{"69", " ", 
+            SuperscriptBox["f", "3"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "32"], "+", 
+          RowBox[{
+           FractionBox["9", "112"], " ", 
+           SuperscriptBox["f", "2"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "-", 
+          RowBox[{
+           FractionBox["57", "32"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "-", 
+          RowBox[{
+           FractionBox["1", "16"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["K", "2"], "p"]]}], "-", 
+          RowBox[{
+           FractionBox["75", "112"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["\[CapitalPi]", "2"], "p"]]}]}], ",", "0", ",", 
+         RowBox[{
+          FractionBox[
+           RowBox[{"3", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "1"]}], "8"], "-", 
+          FractionBox[
+           RowBox[{"3", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "8"], "+", 
+          FractionBox[
+           RowBox[{"15", " ", 
+            SuperscriptBox["f", "3"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "16"], "+", 
+          RowBox[{
+           FractionBox["15", "16"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "+", 
+          RowBox[{
+           FractionBox["1", "8"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["K", "2"], "p"]]}], "+", 
+          RowBox[{
+           FractionBox["3", "8"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["\[CapitalPi]", "2"], "p"]]}]}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", 
+         RowBox[{
+          FractionBox[
+           RowBox[{"5", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "1"]}], "4"], "-", 
+          FractionBox[
+           RowBox[{
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "8"], "-", 
+          FractionBox[
+           RowBox[{"11", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "28"], "-", 
+          FractionBox[
+           RowBox[{"7", " ", 
+            SuperscriptBox["f", "3"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "4"], "-", 
+          RowBox[{
+           FractionBox["1", "4"], " ", 
+           SuperscriptBox["f", "2"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "-", 
+          RowBox[{
+           FractionBox["3", "4"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "+", 
+          RowBox[{
+           FractionBox["1", "6"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["K", "2"], "p"]]}], "-", 
+          RowBox[{
+           FractionBox["3", "28"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["\[CapitalPi]", "2"], "p"]]}]}], ",", "0", ",", 
+         RowBox[{
+          FractionBox[
+           RowBox[{"29", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "1"]}], "8"], "-", 
+          FractionBox[
+           RowBox[{"17", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "8"], "+", 
+          FractionBox[
+           RowBox[{"117", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "112"], "+", 
+          FractionBox[
+           RowBox[{"21", " ", 
+            SuperscriptBox["f", "3"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "4"], "+", 
+          RowBox[{
+           FractionBox["93", "112"], " ", 
+           SuperscriptBox["f", "2"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "+", 
+          RowBox[{
+           FractionBox["51", "8"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "+", 
+          RowBox[{
+           FractionBox["43", "48"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["K", "2"], "p"]]}], "+", 
+          RowBox[{
+           FractionBox["219", "112"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["\[CapitalPi]", "2"], "p"]]}]}], ",", "0", ",", 
+         RowBox[{
+          FractionBox[
+           RowBox[{"9", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "1"]}], "4"], "-", 
+          FractionBox[
+           RowBox[{"9", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "4"], "+", 
+          FractionBox[
+           RowBox[{"165", " ", 
+            SuperscriptBox["f", "3"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "16"], "+", 
+          RowBox[{
+           FractionBox["165", "16"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "+", 
+          RowBox[{
+           FractionBox["3", "4"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["K", "2"], "p"]]}], "+", 
+          RowBox[{
+           FractionBox["9", "4"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["\[CapitalPi]", "2"], "p"]]}]}], ",", "0"}], 
+        "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          FractionBox[
+           RowBox[{"3", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "1"]}], "8"], "-", 
+          FractionBox[
+           RowBox[{
+            SuperscriptBox["f", "3"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "8"]}], ",", "0", ",", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", 
+            FractionBox["47", "16"]}], " ", 
+           SuperscriptBox["f", "2"], " ", 
+           SubscriptBox["b", "1"]}], "+", 
+          FractionBox[
+           RowBox[{"13", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "16"], "+", 
+          FractionBox[
+           RowBox[{"39", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "14"], "+", 
+          FractionBox[
+           RowBox[{"85", " ", 
+            SuperscriptBox["f", "3"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "8"], "+", 
+          RowBox[{
+           FractionBox["61", "28"], " ", 
+           SuperscriptBox["f", "2"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "+", 
+          RowBox[{
+           FractionBox["33", "4"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "-", 
+          RowBox[{
+           FractionBox["17", "24"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["K", "2"], "p"]]}], "+", 
+          RowBox[{
+           FractionBox["5", "28"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["\[CapitalPi]", "2"], "p"]]}]}], ",", "0", ",", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", 
+            FractionBox["63", "8"]}], " ", 
+           SuperscriptBox["f", "2"], " ", 
+           SubscriptBox["b", "1"]}], "+", 
+          FractionBox[
+           RowBox[{"45", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "8"], "-", 
+          FractionBox[
+           RowBox[{"33", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "28"], "-", 
+          FractionBox[
+           RowBox[{"81", " ", 
+            SuperscriptBox["f", "3"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "32"], "-", 
+          RowBox[{
+           FractionBox["15", "14"], " ", 
+           SuperscriptBox["f", "2"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "-", 
+          RowBox[{
+           FractionBox["153", "32"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "-", 
+          RowBox[{
+           FractionBox["9", "4"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["K", "2"], "p"]]}], "-", 
+          RowBox[{
+           FractionBox["32", "7"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["\[CapitalPi]", "2"], "p"]]}]}], ",", "0", ",", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", 
+            FractionBox["15", "4"]}], " ", 
+           SuperscriptBox["f", "2"], " ", 
+           SubscriptBox["b", "1"]}], "+", 
+          FractionBox[
+           RowBox[{"15", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "4"], "-", 
+          FractionBox[
+           RowBox[{"225", " ", 
+            SuperscriptBox["f", "3"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "16"], "-", 
+          RowBox[{
+           FractionBox["225", "16"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "-", 
+          RowBox[{
+           FractionBox["5", "4"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["K", "2"], "p"]]}], "-", 
+          RowBox[{
+           FractionBox["15", "4"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["\[CapitalPi]", "2"], "p"]]}]}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", 
+            FractionBox["11", "4"]}], " ", 
+           SuperscriptBox["f", "2"], " ", 
+           SubscriptBox["b", "1"]}], "+", 
+          FractionBox[
+           RowBox[{"5", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "8"], "+", 
+          FractionBox[
+           RowBox[{"11", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "28"], "+", 
+          FractionBox[
+           RowBox[{"7", " ", 
+            SuperscriptBox["f", "3"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "4"], "+", 
+          RowBox[{
+           FractionBox["3", "4"], " ", 
+           SuperscriptBox["f", "2"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "+", 
+          RowBox[{
+           FractionBox["3", "4"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "-", 
+          RowBox[{
+           FractionBox["1", "3"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["K", "2"], "p"]]}], "-", 
+          RowBox[{
+           FractionBox["11", "28"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["\[CapitalPi]", "2"], "p"]]}]}], ",", "0", ",", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", 
+            FractionBox["5", "4"]}], " ", 
+           SuperscriptBox["f", "2"], " ", 
+           SubscriptBox["b", "1"]}], "+", 
+          FractionBox[
+           RowBox[{"3", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "4"], "-", 
+          FractionBox[
+           RowBox[{"345", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "56"], "-", 
+          FractionBox[
+           RowBox[{"63", " ", 
+            SuperscriptBox["f", "3"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "2"], "-", 
+          RowBox[{
+           FractionBox["285", "56"], " ", 
+           SuperscriptBox["f", "2"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "-", 
+          RowBox[{
+           FractionBox["123", "4"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "-", 
+          RowBox[{
+           FractionBox["1", "8"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["K", "2"], "p"]]}], "-", 
+          RowBox[{
+           FractionBox["75", "56"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["\[CapitalPi]", "2"], "p"]]}]}], ",", "0", ",", 
+         RowBox[{
+          FractionBox[
+           RowBox[{"5", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "1"]}], "2"], "-", 
+          FractionBox[
+           RowBox[{"5", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "2"], "-", 
+          FractionBox[
+           RowBox[{"375", " ", 
+            SuperscriptBox["f", "3"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "16"], "-", 
+          RowBox[{
+           FractionBox["375", "16"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "+", 
+          RowBox[{
+           FractionBox["5", "6"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["K", "2"], "p"]]}], "+", 
+          RowBox[{
+           FractionBox["5", "2"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["\[CapitalPi]", "2"], "p"]]}]}], ",", "0"}], 
+        "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", "0", ",", 
+         RowBox[{
+          FractionBox[
+           RowBox[{"243", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "1"]}], "32"], "-", 
+          FractionBox[
+           RowBox[{"115", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "32"], "-", 
+          FractionBox[
+           RowBox[{"73", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "28"], "-", 
+          FractionBox[
+           RowBox[{"153", " ", 
+            SuperscriptBox["f", "3"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "16"], "-", 
+          RowBox[{
+           FractionBox["25", "7"], " ", 
+           SuperscriptBox["f", "2"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "-", 
+          RowBox[{
+           FractionBox["57", "8"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "+", 
+          RowBox[{
+           FractionBox["77", "48"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["K", "2"], "p"]]}], "+", 
+          RowBox[{
+           FractionBox["11", "4"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["\[CapitalPi]", "2"], "p"]]}]}], ",", "0", ",", 
+         RowBox[{
+          FractionBox[
+           RowBox[{"85", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "1"]}], "8"], "-", 
+          FractionBox[
+           RowBox[{"65", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "8"], "+", 
+          FractionBox[
+           RowBox[{"477", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "112"], "+", 
+          FractionBox[
+           RowBox[{"1305", " ", 
+            SuperscriptBox["f", "3"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "32"], "+", 
+          RowBox[{
+           FractionBox["405", "112"], " ", 
+           SuperscriptBox["f", "2"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "+", 
+          RowBox[{
+           FractionBox["1365", "32"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "+", 
+          RowBox[{
+           FractionBox["145", "48"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["K", "2"], "p"]]}], "+", 
+          RowBox[{
+           FractionBox["825", "112"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["\[CapitalPi]", "2"], "p"]]}]}], ",", "0", ",", 
+         RowBox[{
+          FractionBox[
+           RowBox[{"35", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "1"]}], "8"], "-", 
+          FractionBox[
+           RowBox[{"35", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "8"], "+", 
+          FractionBox[
+           RowBox[{"525", " ", 
+            SuperscriptBox["f", "3"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "16"], "+", 
+          RowBox[{
+           FractionBox["525", "16"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "+", 
+          RowBox[{
+           FractionBox["35", "24"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["K", "2"], "p"]]}], "+", 
+          RowBox[{
+           FractionBox["35", "8"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["\[CapitalPi]", "2"], "p"]]}]}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", "0", ",", "0", ",", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", 
+            FractionBox["75", "8"]}], " ", 
+           SuperscriptBox["f", "2"], " ", 
+           SubscriptBox["b", "1"]}], "+", 
+          FractionBox[
+           RowBox[{"55", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "8"], "+", 
+          FractionBox[
+           RowBox[{"573", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "112"], "+", 
+          FractionBox[
+           RowBox[{"105", " ", 
+            SuperscriptBox["f", "3"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "4"], "+", 
+          RowBox[{
+           FractionBox["645", "112"], " ", 
+           SuperscriptBox["f", "2"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "+", 
+          RowBox[{
+           FractionBox["195", "8"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "-", 
+          RowBox[{
+           FractionBox["125", "48"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["K", "2"], "p"]]}], "-", 
+          RowBox[{
+           FractionBox["685", "112"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["\[CapitalPi]", "2"], "p"]]}]}], ",", "0", ",", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", 
+            FractionBox["35", "4"]}], " ", 
+           SuperscriptBox["f", "2"], " ", 
+           SubscriptBox["b", "1"]}], "+", 
+          FractionBox[
+           RowBox[{"35", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "4"], "-", 
+          FractionBox[
+           RowBox[{"105", " ", 
+            SuperscriptBox["f", "3"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "16"], "-", 
+          RowBox[{
+           FractionBox["105", "16"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "-", 
+          RowBox[{
+           FractionBox["35", "12"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["K", "2"], "p"]]}], "-", 
+          RowBox[{
+           FractionBox["35", "4"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["\[CapitalPi]", "2"], "p"]]}]}], ",", "0"}], 
+        "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", "0", ",", "0", ",", "0", ",", 
+         RowBox[{
+          FractionBox[
+           RowBox[{"35", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "1"]}], "8"], "-", 
+          FractionBox[
+           RowBox[{"35", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Delta]\[Eta]"]}], "8"], "-", 
+          FractionBox[
+           RowBox[{"25", " ", 
+            SuperscriptBox["f", "2"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "8"], "-", 
+          FractionBox[
+           RowBox[{"1155", " ", 
+            SuperscriptBox["f", "3"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "32"], "-", 
+          RowBox[{
+           FractionBox["25", "8"], " ", 
+           SuperscriptBox["f", "2"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "-", 
+          RowBox[{
+           FractionBox["1155", "32"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}], "+", 
+          RowBox[{
+           FractionBox["35", "24"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["K", "2"], "p"]]}], "+", 
+          RowBox[{
+           FractionBox["35", "8"], " ", "f", " ", 
+           SubscriptBox["b", 
+            SubscriptBox[
+             SuperscriptBox["\[CapitalPi]", "2"], "p"]]}]}], ",", "0", ",", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", 
+            FractionBox["315", "16"]}], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", "\[Eta]"]}], "-", 
+          RowBox[{
+           FractionBox["315", "16"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}]}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", "0", ",", "0", ",", "0", ",", "0", ",", 
+         RowBox[{
+          FractionBox[
+           RowBox[{"315", " ", 
+            SuperscriptBox["f", "3"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "16"], "+", 
+          RowBox[{
+           FractionBox["315", "16"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}]}], ",", "0"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+        "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0"}], 
+        "}"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"-", 
+           FractionBox["1", "8"]}], " ", 
+          SuperscriptBox["f", "3"], " ", 
+          SubscriptBox["b", "\[Eta]"]}], ",", "0", ",", 
+         RowBox[{
+          FractionBox[
+           RowBox[{"13", " ", 
+            SuperscriptBox["f", "3"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "32"], "+", 
+          RowBox[{
+           FractionBox["9", "16"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}]}], ",", "0", ",", 
+         RowBox[{
+          FractionBox[
+           RowBox[{"37", " ", 
+            SuperscriptBox["f", "3"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "32"], "+", 
+          RowBox[{
+           FractionBox["31", "32"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}]}], ",", "0", ",", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", 
+            FractionBox["5", "16"]}], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", "\[Eta]"]}], "-", 
+          RowBox[{
+           FractionBox["5", "16"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}]}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", 
+         RowBox[{
+          FractionBox[
+           RowBox[{"7", " ", 
+            SuperscriptBox["f", "3"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "4"], "+", 
+          RowBox[{
+           FractionBox["3", "4"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}]}], ",", "0", ",", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", 
+            FractionBox["9", "8"]}], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", "\[Eta]"]}], "-", 
+          RowBox[{
+           FractionBox["39", "16"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}]}], ",", "0", ",", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", 
+            FractionBox["85", "16"]}], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", "\[Eta]"]}], "-", 
+          RowBox[{
+           FractionBox["85", "16"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}]}], ",", "0"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         FractionBox[
+          RowBox[{"3", " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", "\[Eta]"]}], "8"], ",", "0", ",", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", 
+            FractionBox["141", "16"]}], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", "\[Eta]"]}], "-", 
+          RowBox[{
+           FractionBox["57", "8"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}]}], ",", "0", ",", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", 
+            FractionBox["135", "32"]}], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", "\[Eta]"]}], "-", 
+          RowBox[{
+           FractionBox["75", "32"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}]}], ",", "0", ",", 
+         RowBox[{
+          FractionBox[
+           RowBox[{"105", " ", 
+            SuperscriptBox["f", "3"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "16"], "+", 
+          RowBox[{
+           FractionBox["105", "16"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}]}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", 
+            FractionBox["13", "4"]}], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", "\[Eta]"]}], "-", 
+          RowBox[{
+           FractionBox["5", "4"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}]}], ",", "0", ",", 
+         RowBox[{
+          FractionBox[
+           RowBox[{"85", " ", 
+            SuperscriptBox["f", "3"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "4"], "+", 
+          RowBox[{
+           FractionBox["175", "8"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}]}], ",", "0", ",", 
+         RowBox[{
+          FractionBox[
+           RowBox[{"315", " ", 
+            SuperscriptBox["f", "3"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "16"], "+", 
+          RowBox[{
+           FractionBox["315", "16"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}]}], ",", "0"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", "0", ",", 
+         RowBox[{
+          FractionBox[
+           RowBox[{"405", " ", 
+            SuperscriptBox["f", "3"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "32"], "+", 
+          RowBox[{
+           FractionBox["145", "16"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}]}], ",", "0", ",", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", 
+            FractionBox["665", "32"]}], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", "\[Eta]"]}], "-", 
+          RowBox[{
+           FractionBox["735", "32"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}]}], ",", "0", ",", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", 
+            FractionBox["315", "16"]}], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", "\[Eta]"]}], "-", 
+          RowBox[{
+           FractionBox["315", "16"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}]}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", "0", ",", "0", ",", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", 
+            FractionBox["217", "8"]}], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", "\[Eta]"]}], "-", 
+          RowBox[{
+           FractionBox["399", "16"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}]}], ",", "0", ",", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", 
+            FractionBox["63", "16"]}], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", "\[Eta]"]}], "-", 
+          RowBox[{
+           FractionBox["63", "16"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}]}], ",", "0"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", "0", ",", "0", ",", "0", ",", 
+         RowBox[{
+          FractionBox[
+           RowBox[{"987", " ", 
+            SuperscriptBox["f", "3"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "32"], "+", 
+          RowBox[{
+           FractionBox["987", "32"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}]}], ",", "0", ",", 
+         RowBox[{
+          FractionBox[
+           RowBox[{"231", " ", 
+            SuperscriptBox["f", "3"], " ", 
+            SubscriptBox["b", "\[Eta]"]}], "16"], "+", 
+          RowBox[{
+           FractionBox["231", "16"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}]}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", "0", ",", "0", ",", "0", ",", "0", ",", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", 
+            FractionBox["231", "16"]}], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", "\[Eta]"]}], "-", 
+          RowBox[{
+           FractionBox["231", "16"], " ", 
+           SuperscriptBox["f", "3"], " ", 
+           SubscriptBox["b", 
+            SuperscriptBox["\[Eta]", "2"]]}]}], ",", "0"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+        "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0"}], 
+        "}"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+        "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0"}], 
+        "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+        "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0"}], 
+        "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+        "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0"}], 
+        "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+        "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0"}], 
+        "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+        "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0"}], 
+        "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+        "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0"}], 
+        "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+        "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0"}], 
+        "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+        "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0"}], 
+        "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+        "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0", ",", "0"}], 
+        "}"}]}], "}"}]}], "}"}]}], "\[IndentingNewLine]"}]], "Input",
+ CellChangeTimes->{
+  3.811492208311365*^9, {3.8114922584452744`*^9, 3.8114922619724407`*^9}, {
+   3.811492530492244*^9, 3.811492534814289*^9}, {3.811495962948975*^9, 
+   3.8114959647850122`*^9}, {3.8114961733619432`*^9, 3.811496174238537*^9}, 
+   3.8114963942491293`*^9, {3.811496799204715*^9, 3.811496804577899*^9}, 
+   3.811496857803944*^9, 3.8114969031121283`*^9, 
+   3.811497219759015*^9},ExpressionUUID->"37fb87f3-7c9d-4ac6-8fa9-\
+f6326ddf5ce6"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"C13lncross", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        FractionBox[
+         RowBox[{"2", " ", 
+          SubscriptBox["b", "1"]}], "21"], "+", 
+        FractionBox[
+         RowBox[{"5", " ", 
+          SubscriptBox["b", 
+           SuperscriptBox["K", "2"]]}], "7"], "+", 
+        FractionBox[
+         RowBox[{"2", " ", 
+          SubscriptBox["b", "td"]}], "7"], "-", 
+        FractionBox[
+         RowBox[{"4", " ", "f", " ", 
+          SubscriptBox["b", "\[Eta]"]}], "63"], "+", 
+        RowBox[{
+         FractionBox["2", "35"], " ", 
+         SuperscriptBox["f", "2"], " ", 
+         SubscriptBox["b", 
+          SuperscriptBox["\[Eta]", "2"]]}], "+", 
+        FractionBox[
+         RowBox[{"5", " ", 
+          SubscriptBox["b", 
+           SubscriptBox[
+            SuperscriptBox["K", "2"], "p"]]}], "21"], "-", 
+        RowBox[{
+         FractionBox["1", "21"], " ", "f", " ", 
+         SubscriptBox["b", 
+          SubscriptBox[
+           SuperscriptBox["\[Eta]\[CapitalPi]", "2"], "p"]]}], "+", 
+        FractionBox[
+         RowBox[{"2", " ", 
+          SubscriptBox["b", 
+           SubscriptBox[
+            SuperscriptBox["\[CapitalPi]", "2"], "p"]]}], "63"], "+", 
+        RowBox[{
+         FractionBox["5", "42"], " ", 
+         SubscriptBox["b", 
+          SubscriptBox[
+           RowBox[{"K", " ", 
+            SuperscriptBox["\[CapitalPi]", "2"]}], "p"]]}], "+", 
+        FractionBox[
+         SubscriptBox["b", 
+          SubscriptBox[
+           SuperscriptBox["\[CapitalPi]", "3"], "p"]], "63"]}], ",", 
+       RowBox[{
+        FractionBox[
+         SubscriptBox["b", "1"], "14"], "+", 
+        FractionBox[
+         RowBox[{"f", " ", 
+          SubscriptBox["b", "1"]}], "7"], "-", 
+        FractionBox[
+         RowBox[{"15", " ", 
+          SubscriptBox["b", 
+           SuperscriptBox["K", "2"]]}], "14"], "-", 
+        FractionBox[
+         RowBox[{"3", " ", 
+          SubscriptBox["b", "td"]}], "7"], "+", 
+        FractionBox[
+         RowBox[{"f", " ", 
+          SubscriptBox["b", "\[Eta]"]}], "42"], "-", 
+        FractionBox[
+         RowBox[{"3", " ", 
+          SuperscriptBox["f", "2"], " ", 
+          SubscriptBox["b", "\[Eta]"]}], "35"], "-", 
+        RowBox[{
+         FractionBox["3", "35"], " ", 
+         SuperscriptBox["f", "2"], " ", 
+         SubscriptBox["b", 
+          SuperscriptBox["\[Eta]", "2"]]}], "-", 
+        FractionBox[
+         RowBox[{"5", " ", 
+          SubscriptBox["b", 
+           SubscriptBox[
+            SuperscriptBox["K", "2"], "p"]]}], "14"], "+", 
+        RowBox[{
+         FractionBox["1", "14"], " ", "f", " ", 
+         SubscriptBox["b", 
+          SubscriptBox[
+           SuperscriptBox["\[Eta]\[CapitalPi]", "2"], "p"]]}], "-", 
+        FractionBox[
+         SubscriptBox["b", 
+          SubscriptBox[
+           SuperscriptBox["\[CapitalPi]", "2"], "p"]], "21"], "-", 
+        RowBox[{
+         FractionBox["5", "28"], " ", 
+         SubscriptBox["b", 
+          SubscriptBox[
+           RowBox[{"K", " ", 
+            SuperscriptBox["\[CapitalPi]", "2"]}], "p"]]}], "-", 
+        FractionBox[
+         SubscriptBox["b", 
+          SubscriptBox[
+           SuperscriptBox["\[CapitalPi]", "3"], "p"]], "42"]}], ",", 
+       RowBox[{
+        RowBox[{"-", 
+         FractionBox[
+          SubscriptBox["b", "1"], "6"]}], "-", 
+        FractionBox[
+         RowBox[{"f", " ", 
+          SubscriptBox["b", "1"]}], "7"], "+", 
+        FractionBox[
+         RowBox[{"5", " ", 
+          SubscriptBox["b", 
+           SuperscriptBox["K", "2"]]}], "14"], "+", 
+        FractionBox[
+         SubscriptBox["b", "td"], "7"], "+", 
+        FractionBox[
+         RowBox[{"5", " ", "f", " ", 
+          SubscriptBox["b", "\[Eta]"]}], "126"], "+", 
+        FractionBox[
+         RowBox[{
+          SuperscriptBox["f", "2"], " ", 
+          SubscriptBox["b", "\[Eta]"]}], "35"], "+", 
+        RowBox[{
+         FractionBox["1", "35"], " ", 
+         SuperscriptBox["f", "2"], " ", 
+         SubscriptBox["b", 
+          SuperscriptBox["\[Eta]", "2"]]}], "+", 
+        FractionBox[
+         RowBox[{"5", " ", 
+          SubscriptBox["b", 
+           SubscriptBox[
+            SuperscriptBox["K", "2"], "p"]]}], "42"], "-", 
+        RowBox[{
+         FractionBox["1", "42"], " ", "f", " ", 
+         SubscriptBox["b", 
+          SubscriptBox[
+           SuperscriptBox["\[Eta]\[CapitalPi]", "2"], "p"]]}], "+", 
+        FractionBox[
+         SubscriptBox["b", 
+          SubscriptBox[
+           SuperscriptBox["\[CapitalPi]", "2"], "p"]], "63"], "+", 
+        RowBox[{
+         FractionBox["5", "84"], " ", 
+         SubscriptBox["b", 
+          SubscriptBox[
+           RowBox[{"K", " ", 
+            SuperscriptBox["\[CapitalPi]", "2"]}], "p"]]}], "+", 
+        FractionBox[
+         SubscriptBox["b", 
+          SubscriptBox[
+           SuperscriptBox["\[CapitalPi]", "3"], "p"]], "126"]}], ",", 
+       FractionBox[
+        RowBox[{"2", " ", 
+         SuperscriptBox["f", "2"], " ", 
+         SubscriptBox["b", "\[Eta]"]}], "35"], ",", "0"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"-", 
+         FractionBox[
+          RowBox[{"8", " ", "f", " ", 
+           SubscriptBox["b", "\[Eta]"]}], "63"]}], "-", 
+        FractionBox[
+         RowBox[{"9", " ", 
+          SuperscriptBox["f", "2"], " ", 
+          SubscriptBox["b", "\[Eta]"]}], "98"], "+", 
+        RowBox[{
+         FractionBox["2", "49"], " ", 
+         SuperscriptBox["f", "2"], " ", 
+         SubscriptBox["b", 
+          SuperscriptBox["\[Eta]", "2"]]}], "+", 
+        FractionBox[
+         RowBox[{"5", " ", 
+          SubscriptBox["b", 
+           SubscriptBox[
+            SuperscriptBox["K", "2"], "p"]]}], "42"], "-", 
+        RowBox[{
+         FractionBox["5", "147"], " ", "f", " ", 
+         SubscriptBox["b", 
+          SubscriptBox[
+           SuperscriptBox["\[Eta]\[CapitalPi]", "2"], "p"]]}], "-", 
+        FractionBox[
+         RowBox[{"2", " ", 
+          SubscriptBox["b", 
+           SubscriptBox[
+            SuperscriptBox["\[CapitalPi]", "2"], "p"]]}], "9"], "+", 
+        RowBox[{
+         FractionBox["15", "196"], " ", "f", " ", 
+         SubscriptBox["b", 
+          SubscriptBox[
+           SuperscriptBox["\[CapitalPi]", "2"], "p"]]}], "+", 
+        RowBox[{
+         FractionBox["5", "84"], " ", 
+         SubscriptBox["b", 
+          SubscriptBox[
+           RowBox[{"K", " ", 
+            SuperscriptBox["\[CapitalPi]", "2"]}], "p"]]}], "-", 
+        FractionBox[
+         RowBox[{"101", " ", 
+          SubscriptBox["b", 
+           SubscriptBox[
+            SuperscriptBox["\[CapitalPi]", "3"], "p"]]}], "504"]}], ",", 
+       RowBox[{
+        FractionBox[
+         RowBox[{"2", " ", "f", " ", 
+          SubscriptBox["b", "1"]}], "7"], "+", 
+        FractionBox[
+         RowBox[{"f", " ", 
+          SubscriptBox["b", "\[Eta]"]}], "21"], "-", 
+        FractionBox[
+         RowBox[{"3", " ", 
+          SuperscriptBox["f", "2"], " ", 
+          SubscriptBox["b", "\[Eta]"]}], "28"], "-", 
+        RowBox[{
+         FractionBox["3", "49"], " ", 
+         SuperscriptBox["f", "2"], " ", 
+         SubscriptBox["b", 
+          SuperscriptBox["\[Eta]", "2"]]}], "-", 
+        FractionBox[
+         RowBox[{"5", " ", 
+          SubscriptBox["b", 
+           SubscriptBox[
+            SuperscriptBox["K", "2"], "p"]]}], "28"], "+", 
+        RowBox[{
+         FractionBox["5", "98"], " ", "f", " ", 
+         SubscriptBox["b", 
+          SubscriptBox[
+           SuperscriptBox["\[Eta]\[CapitalPi]", "2"], "p"]]}], "+", 
+        FractionBox[
+         SubscriptBox["b", 
+          SubscriptBox[
+           SuperscriptBox["\[CapitalPi]", "2"], "p"]], "3"], "-", 
+        RowBox[{
+         FractionBox["45", "392"], " ", "f", " ", 
+         SubscriptBox["b", 
+          SubscriptBox[
+           SuperscriptBox["\[CapitalPi]", "2"], "p"]]}], "-", 
+        RowBox[{
+         FractionBox["5", "56"], " ", 
+         SubscriptBox["b", 
+          SubscriptBox[
+           RowBox[{"K", " ", 
+            SuperscriptBox["\[CapitalPi]", "2"]}], "p"]]}], "+", 
+        FractionBox[
+         RowBox[{"101", " ", 
+          SubscriptBox["b", 
+           SubscriptBox[
+            SuperscriptBox["\[CapitalPi]", "3"], "p"]]}], "336"]}], ",", 
+       RowBox[{
+        FractionBox[
+         RowBox[{"4", " ", "f", " ", 
+          SubscriptBox["b", "1"]}], "7"], "+", 
+        FractionBox[
+         RowBox[{"3", " ", "f", " ", 
+          SubscriptBox["b", "\[Delta]\[Eta]"]}], "7"], "+", 
+        FractionBox[
+         RowBox[{"5", " ", "f", " ", 
+          SubscriptBox["b", "\[Eta]"]}], "63"], "-", 
+        FractionBox[
+         RowBox[{"11", " ", 
+          SuperscriptBox["f", "2"], " ", 
+          SubscriptBox["b", "\[Eta]"]}], "28"], "-", 
+        RowBox[{
+         FractionBox["17", "49"], " ", 
+         SuperscriptBox["f", "2"], " ", 
+         SubscriptBox["b", 
+          SuperscriptBox["\[Eta]", "2"]]}], "-", 
+        FractionBox[
+         RowBox[{"5", " ", 
+          SubscriptBox["b", 
+           SubscriptBox[
+            SuperscriptBox["K", "2"], "p"]]}], "28"], "-", 
+        FractionBox[
+         RowBox[{"5", " ", 
+          SubscriptBox["b", 
+           SubscriptBox[
+            SuperscriptBox["\[Delta]\[CapitalPi]", "2"], "p"]]}], "7"], "+", 
+        RowBox[{
+         FractionBox["85", "294"], " ", "f", " ", 
+         SubscriptBox["b", 
+          SubscriptBox[
+           SuperscriptBox["\[Eta]\[CapitalPi]", "2"], "p"]]}], "-", 
+        FractionBox[
+         RowBox[{"43", " ", 
+          SubscriptBox["b", 
+           SubscriptBox[
+            SuperscriptBox["\[CapitalPi]", "2"], "p"]]}], "63"], "+", 
+        RowBox[{
+         FractionBox["75", "392"], " ", "f", " ", 
+         SubscriptBox["b", 
+          SubscriptBox[
+           SuperscriptBox["\[CapitalPi]", "2"], "p"]]}], "-", 
+        RowBox[{
+         FractionBox["5", "56"], " ", 
+         SubscriptBox["b", 
+          SubscriptBox[
+           RowBox[{"K", " ", 
+            SuperscriptBox["\[CapitalPi]", "2"]}], "p"]]}], "-", 
+        FractionBox[
+         RowBox[{"569", " ", 
+          SubscriptBox["b", 
+           SubscriptBox[
+            SuperscriptBox["\[CapitalPi]", "3"], "p"]]}], "1008"]}], ",", 
+       RowBox[{
+        RowBox[{"-", 
+         FractionBox[
+          RowBox[{"6", " ", "f", " ", 
+           SubscriptBox["b", "1"]}], "7"]}], "-", 
+        FractionBox[
+         RowBox[{"3", " ", "f", " ", 
+          SubscriptBox["b", "\[Delta]\[Eta]"]}], "7"], "+", 
+        FractionBox[
+         RowBox[{"29", " ", 
+          SuperscriptBox["f", "2"], " ", 
+          SubscriptBox["b", "\[Eta]"]}], "49"], "+", 
+        RowBox[{
+         FractionBox["18", "49"], " ", 
+         SuperscriptBox["f", "2"], " ", 
+         SubscriptBox["b", 
+          SuperscriptBox["\[Eta]", "2"]]}], "+", 
+        FractionBox[
+         RowBox[{"5", " ", 
+          SubscriptBox["b", 
+           SubscriptBox[
+            SuperscriptBox["K", "2"], "p"]]}], "21"], "+", 
+        FractionBox[
+         RowBox[{"5", " ", 
+          SubscriptBox["b", 
+           SubscriptBox[
+            SuperscriptBox["\[Delta]\[CapitalPi]", "2"], "p"]]}], "7"], "-", 
+        RowBox[{
+         FractionBox["15", "49"], " ", "f", " ", 
+         SubscriptBox["b", 
+          SubscriptBox[
+           SuperscriptBox["\[Eta]\[CapitalPi]", "2"], "p"]]}], "+", 
+        FractionBox[
+         RowBox[{"4", " ", 
+          SubscriptBox["b", 
+           SubscriptBox[
+            SuperscriptBox["\[CapitalPi]", "2"], "p"]]}], "7"], "-", 
+        RowBox[{
+         FractionBox["15", "98"], " ", "f", " ", 
+         SubscriptBox["b", 
+          SubscriptBox[
+           SuperscriptBox["\[CapitalPi]", "2"], "p"]]}], "+", 
+        RowBox[{
+         FractionBox["5", "42"], " ", 
+         SubscriptBox["b", 
+          SubscriptBox[
+           RowBox[{"K", " ", 
+            SuperscriptBox["\[CapitalPi]", "2"]}], "p"]]}], "+", 
+        FractionBox[
+         RowBox[{"13", " ", 
+          SubscriptBox["b", 
+           SubscriptBox[
+            SuperscriptBox["\[CapitalPi]", "3"], "p"]]}], "28"]}], ",", "0"}],
+       "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"-", 
+          FractionBox["6", "49"]}], " ", 
+         SuperscriptBox["f", "2"], " ", 
+         SubscriptBox["b", "\[Eta]"]}], "-", 
+        RowBox[{
+         FractionBox["24", "245"], " ", 
+         SuperscriptBox["f", "2"], " ", 
+         SubscriptBox["b", 
+          SuperscriptBox["\[Eta]", "2"]]}], "+", 
+        RowBox[{
+         FractionBox["4", "49"], " ", "f", " ", 
+         SubscriptBox["b", 
+          SubscriptBox[
+           SuperscriptBox["\[Eta]\[CapitalPi]", "2"], "p"]]}], "+", 
+        RowBox[{
+         FractionBox["5", "49"], " ", "f", " ", 
+         SubscriptBox["b", 
+          SubscriptBox[
+           SuperscriptBox["\[CapitalPi]", "2"], "p"]]}]}], ",", 
+       RowBox[{
+        FractionBox[
+         RowBox[{"3", " ", 
+          SuperscriptBox["f", "2"], " ", 
+          SubscriptBox["b", "\[Eta]"]}], "35"], "+", 
+        RowBox[{
+         FractionBox["36", "245"], " ", 
+         SuperscriptBox["f", "2"], " ", 
+         SubscriptBox["b", 
+          SuperscriptBox["\[Eta]", "2"]]}], "-", 
+        RowBox[{
+         FractionBox["6", "49"], " ", "f", " ", 
+         SubscriptBox["b", 
+          SubscriptBox[
+           SuperscriptBox["\[Eta]\[CapitalPi]", "2"], "p"]]}], "-", 
+        RowBox[{
+         FractionBox["15", "98"], " ", "f", " ", 
+         SubscriptBox["b", 
+          SubscriptBox[
+           SuperscriptBox["\[CapitalPi]", "2"], "p"]]}]}], ",", 
+       RowBox[{
+        FractionBox[
+         RowBox[{"9", " ", 
+          SuperscriptBox["f", "2"], " ", 
+          SubscriptBox["b", "\[Eta]"]}], "35"], "+", 
+        RowBox[{
+         FractionBox["78", "245"], " ", 
+         SuperscriptBox["f", "2"], " ", 
+         SubscriptBox["b", 
+          SuperscriptBox["\[Eta]", "2"]]}], "-", 
+        RowBox[{
+         FractionBox["13", "49"], " ", "f", " ", 
+         SubscriptBox["b", 
+          SubscriptBox[
+           SuperscriptBox["\[Eta]\[CapitalPi]", "2"], "p"]]}], "-", 
+        RowBox[{
+         FractionBox["45", "98"], " ", "f", " ", 
+         SubscriptBox["b", 
+          SubscriptBox[
+           SuperscriptBox["\[CapitalPi]", "2"], "p"]]}]}], ",", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"-", 
+          FractionBox["264", "245"]}], " ", 
+         SuperscriptBox["f", "2"], " ", 
+         SubscriptBox["b", "\[Eta]"]}], "-", 
+        RowBox[{
+         FractionBox["60", "49"], " ", 
+         SuperscriptBox["f", "2"], " ", 
+         SubscriptBox["b", 
+          SuperscriptBox["\[Eta]", "2"]]}], "+", 
+        RowBox[{
+         FractionBox["50", "49"], " ", "f", " ", 
+         SubscriptBox["b", 
+          SubscriptBox[
+           SuperscriptBox["\[Eta]\[CapitalPi]", "2"], "p"]]}], "+", 
+        RowBox[{
+         FractionBox["60", "49"], " ", "f", " ", 
+         SubscriptBox["b", 
+          SubscriptBox[
+           SuperscriptBox["\[CapitalPi]", "2"], "p"]]}]}], ",", 
+       RowBox[{
+        FractionBox[
+         RowBox[{"6", " ", 
+          SuperscriptBox["f", "2"], " ", 
+          SubscriptBox["b", "\[Eta]"]}], "7"], "+", 
+        RowBox[{
+         FractionBox["6", "7"], " ", 
+         SuperscriptBox["f", "2"], " ", 
+         SubscriptBox["b", 
+          SuperscriptBox["\[Eta]", "2"]]}], "-", 
+        RowBox[{
+         FractionBox["5", "7"], " ", "f", " ", 
+         SubscriptBox["b", 
+          SubscriptBox[
+           SuperscriptBox["\[Eta]\[CapitalPi]", "2"], "p"]]}], "-", 
+        RowBox[{
+         FractionBox["5", "7"], " ", "f", " ", 
+         SubscriptBox["b", 
+          SubscriptBox[
+           SuperscriptBox["\[CapitalPi]", "2"], "p"]]}]}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"0", ",", "0", ",", "0", ",", "0", ",", "0"}], "}"}]}], "}"}]}],
+   ";"}]], "Input",
+ CellChangeTimes->{
+  3.811496862350046*^9},ExpressionUUID->"6c025067-608d-4888-b0d5-\
+27d672a80c3d"]
+},
+WindowSize->{1266, 739},
+WindowMargins->{{24, Automatic}, {Automatic, 2}},
+FrontEndVersion->"12.1 for Mac OS X x86 (64-bit) (March 18, 2020)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"5369ce54-3011-4eb7-9803-0ebfdc0f95a2"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 4350, 121, 324, "Input",ExpressionUUID->"4d5542bb-5891-433a-8cab-b667fb5f2e29"],
+Cell[4911, 143, 99047, 2700, 2733, "Input",ExpressionUUID->"37fb87f3-7c9d-4ac6-8fa9-f6326ddf5ce6"],
+Cell[103961, 2845, 16008, 464, 464, "Input",ExpressionUUID->"6c025067-608d-4888-b0d5-27d672a80c3d"]
+}
+]
+*)
+
